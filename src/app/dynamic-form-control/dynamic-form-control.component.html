@@ -1,0 +1,60 @@
+<div [formGroup]="formData">
+  <label
+    *ngIf="formDataControl?.type !== 'checkbox'"
+    [attr.for]="formDataControl?.key"
+    class="form-label"
+    >{{ formDataControl?.label }}</label
+  >
+
+  <div [ngSwitch]="formDataControl?.controlType" class="form-group">
+    <ng-container *ngSwitchCase="'textbox'">
+      
+      <ng-container *ngIf="formDataControl?.type === 'checkbox'">
+        <div class="custom-control custom-checkbox">
+          <input
+            [formControlName]="formDataControl?.key"
+            [id]="formDataControl?.key"
+            [type]="formDataControl?.type"
+            [checked]="formDataControl?.checked"
+            class="custom-control-input"
+          />
+          <label
+            class="custom-control-label"
+            [attr.for]="formDataControl?.key"
+            >{{ formDataControl?.label }}</label
+          >
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="formDataControl?.type !== 'checkbox'">
+        <input
+          [formControlName]="formDataControl?.key"
+          [id]="formDataControl?.key"
+          [type]="formDataControl?.type ? formDataControl?.type : 'text'"
+          [checked]="formDataControl?.checked"
+          class="form-control"
+        />
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'dropdown'">
+      <select
+        [id]="formDataControl?.key"
+        [formControlName]="formDataControl?.key"
+        class="custom-select"
+      >
+        <option
+          *ngFor="let opt of formDataControl?.options"
+          [value]="opt?.key"
+          [selected]="opt?.selected"
+        >
+          {{ opt?.value }}
+        </option>
+      </select>
+    </ng-container>
+  </div>
+
+  <div class="invalid-feedback" *ngIf="!isValid">
+    {{ formDataControl?.label }} is required!
+  </div>
+</div>
