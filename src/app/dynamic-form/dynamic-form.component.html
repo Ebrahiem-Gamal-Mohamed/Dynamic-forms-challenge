@@ -1,0 +1,33 @@
+<div class="dynamic-form-wrapper p-3">
+  <ng-container *ngIf="formDataControls && formDataControls?.length && formData; else noDataExists">
+    <form (ngSubmit)="onSubmit()" [formGroup]="formData">
+      <div *ngFor="let formDataControl of formDataControls">
+        <app-dynamic-form-control
+          [formDataControl]="formDataControl"
+          [formData]="formData"
+        ></app-dynamic-form-control>
+      </div>
+
+      <div class="form-row justify-content-center">
+        <button
+          type="submit"
+          class="btn btn-primary mx-2"
+          [disabled]="!formData?.valid"
+        >
+          Submit
+        </button>
+        <button type="button" class="btn btn-dark" (click)="resetForm()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </ng-container>
+
+  <div *ngIf="payLoad">
+    <strong>Saved the following values</strong><br />{{ payLoad }}
+  </div>
+</div>
+
+<ng-template #noDataExists>
+    <strong>Your form data will appear here...</strong>
+</ng-template>
