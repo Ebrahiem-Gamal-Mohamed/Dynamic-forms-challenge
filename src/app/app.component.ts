@@ -31,4 +31,10 @@ export class AppComponent implements OnInit {
         tap(data => console.log(data))
       );
   }
+
+  onCancleClicked(value: boolean) {
+    if (value) {
+      this.textControl.reset();
+    }
+  }
 }

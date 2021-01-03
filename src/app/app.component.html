@@ -39,6 +39,7 @@
     <section class="col-md-6 col-12">
       <app-dynamic-form
         [formDataControls]="formDataControls$ | async"
+        (onCancleClicked)="onCancleClicked($event)"
       ></app-dynamic-form>
     </section>
 

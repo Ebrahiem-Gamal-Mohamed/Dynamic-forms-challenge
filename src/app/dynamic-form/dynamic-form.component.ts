@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BaseControl } from '../control-types/base-control.model';
 
@@ -11,6 +11,8 @@ import { FormDataControlService } from '../_services/form-data-control.service';
 })
 export class DynamicFormComponent implements OnInit, OnChanges {
   @Input() formDataControls: BaseControl<string>[] = [];
+  @Output() onCancleClicked: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   formData: FormGroup;
   payLoad = '';
 
@@ -37,5 +39,6 @@ export class DynamicFormComponent implements OnInit, OnChanges {
     this.formData.reset();
     this.formDataControls = [];
     this.payLoad = '';
+    this.onCancleClicked.emit(true);
   }
 }
