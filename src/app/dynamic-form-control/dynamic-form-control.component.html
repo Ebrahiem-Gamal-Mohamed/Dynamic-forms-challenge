@@ -1,6 +1,6 @@
 <div [formGroup]="formData">
   <label
-    *ngIf="formDataControl?.type !== 'checkbox'"
+    *ngIf="formDataControl?.type !== 'checkbox' && formDataControl?.type !== 'radio'"
     [attr.for]="formDataControl?.key"
     class="form-label"
     >{{ formDataControl?.label }}</label
@@ -26,7 +26,24 @@
         </div>
       </ng-container>
 
-      <ng-container *ngIf="formDataControl?.type !== 'checkbox'">
+      <!-- <ng-container *ngIf="formDataControl?.type === 'radio'">
+        <div class="custom-control custom-radio">
+          <input
+            [formControlName]="formDataControl?.key"
+            [id]="formDataControl?.key"
+            [type]="formDataControl?.type"
+            [checked]="formDataControl?.checked"
+            class="custom-control-input"
+          />
+          <label
+            class="custom-control-label"
+            [attr.for]="formDataControl?.key"
+            >{{ formDataControl?.label }}</label
+          >
+        </div>
+      </ng-container> -->
+
+      <ng-container *ngIf="formDataControl?.type !== 'checkbox' && formDataControl?.type !== 'radio'">
         <input
           [formControlName]="formDataControl?.key"
           [id]="formDataControl?.key"

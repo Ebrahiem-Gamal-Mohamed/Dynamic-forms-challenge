@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 :host {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 14px;
     color: #333;
     box-sizing: border-box;
@@ -33,7 +33,7 @@ p {
     height: 60px;
     display: flex;
     align-items: center;
-    background-color: #6c757d; //#1976d2;
+    background-color: #6c757d;
     color: white;
     font-weight: 600;
 
@@ -61,8 +61,9 @@ p {
     margin-top: 5rem;
 
     .text-area {
-        height: 80vh;
+        height: 100%;
         width: 100%;
+        border-radius: 0 0 0.3rem 0.3rem;
     }
 
     svg#clouds {
@@ -77,10 +78,61 @@ p {
 .dynamic-form-wrapper {
     background: #ddd;
     min-height: 80vh;
+    height: 80vh;
     border-radius: .3rem;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.textarea-terminal {
+    height: 80vh;
+    @extend %terminalStyle;
+    @extend %beforeTerminal;
+}
+
+.terminal {
+    @extend %terminalStyle;
+    width: 100%;
+    margin-top: 8px;
+
+    @extend %beforeTerminal;
+
+    p {
+        font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+        color: #ffffff;
+        padding: 1rem;
+        margin: 0;
+        word-break: break-all;
+    }
 }
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {}
 
 @media screen and (max-width: 575px) {}
+
+// placeholders ...
+%terminalStyle {
+    position: relative;
+    border-radius: .3rem;
+    overflow: hidden;
+    background-color: #0f0f10;
+    padding-top: 30px;
+}
+
+%beforeTerminal {
+    &::before {
+        content: "\2022 \2022 \2022";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 4px;
+        background: rgb(58, 58, 58);
+        color: #c2c3c4;
+        width: 100%;
+        font-size: 2rem;
+        line-height: 0;
+        padding: 14px 0;
+        text-indent: 4px;
+    }
+}

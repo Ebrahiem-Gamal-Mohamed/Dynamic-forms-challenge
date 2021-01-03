@@ -1,5 +1,10 @@
 <div class="dynamic-form-wrapper p-3">
-  <ng-container *ngIf="formDataControls && formDataControls?.length && formData; else noDataExists">
+  <ng-container
+    *ngIf="
+      formDataControls && formDataControls?.length && formData;
+      else noDataExists
+    "
+  >
     <form (ngSubmit)="onSubmit()" [formGroup]="formData">
       <div *ngFor="let formDataControl of formDataControls">
         <app-dynamic-form-control
@@ -24,10 +29,13 @@
   </ng-container>
 
   <div *ngIf="payLoad">
-    <strong>Saved the following values</strong><br />{{ payLoad }}
+    <strong>Saved the following values</strong><br />
+    <div class="terminal">
+      <p>{{ payLoad }}</p>
+    </div>
   </div>
 </div>
 
 <ng-template #noDataExists>
-    <strong>Your form data will appear here...</strong>
+  <strong>Your form data will appear here...</strong>
 </ng-template>

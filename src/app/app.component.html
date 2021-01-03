@@ -26,8 +26,14 @@
 <div class="container-fluid editor-wrapper">
   <div class="row" role="main">
     <section class="col-md-6 col-12">
-      <textarea class="text-area form-control" [formControl]="textControl" placeholder="Enter your json data here...">
-      </textarea>
+      <div class="textarea-terminal">
+        <textarea
+          class="text-area form-control"
+          [formControl]="textControl"
+          placeholder="Enter your json data here..."
+        >
+        </textarea>
+      </div>
     </section>
 
     <section class="col-md-6 col-12">
